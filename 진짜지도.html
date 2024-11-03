@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태현아2층길안내해줘~</title>
+    <style>
+        td {
+            padding: 10px;
+        }
+        .highlight {
+            border: 2px solid red; /* 빨간색 두꺼운 테두리 */
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="userInput" placeholder="찾을 교실을 입력해주세요." />
+    <button onclick="highlightCells()">검색</button>
+
+    <table border="1" id="myTable">
+        <tr>
+            <td id="207">207</td>
+            <td rowspan="2" id="208">208</td>
+            <td rowspan="2" id="209">209</td>
+            <td rowspan="2" id="210">210</td>
+            <td rowspan="2" id="211">211</td>
+            <td rowspan="2" id="212">212</td>
+            <td rowspan="2" id="쉼터">쉼터</td>
+        </tr>
+        <tr>
+            <td id="206">206</td>
+        </tr>
+        <tr>
+            <td colspan="2" id="화장실">화장실</td>
+            <td rowspan="5" colspan="4" id="2층">2층</td>
+            <td id="213">213</td>
+        </tr>
+        <tr>
+            <td colspan="2" id="205">205</td>
+            <td id="214">214</td>
+        </tr>
+        <tr>
+            <td colspan="2" id="204">204</td>
+            <td id="215">215</td>
+        </tr>
+        <tr>
+            <td colspan="2" id="203">203</td>
+            <td id="216">216</td>
+        </tr>
+        <tr>
+            <td colspan="2" id="202">202</td>
+            <td id="화장실">화장실</td>
+        </tr>
+        <tr>
+            <td colspan="2" id="201">201</td>
+            <td id="223 222">223-2</td>
+            <td id="221">221</td>
+            <td id="220">220</td>
+            <td id="219">219</td>
+            <td id="218">218</td>
+        </tr>
+    </table>
+    
+    <script>
+        function highlightCells() {
+            // 입력된 문자열 가져오기
+            const userInput = document.getElementById('userInput').value;
+            const cells = document.querySelectorAll('#myTable td');
+
+            // 모든 셀의 하이라이트 제거
+            cells.forEach(cell => {
+                cell.classList.remove('highlight');
+            });
+
+            // 각 셀의 ID와 입력된 문자열 비교
+            cells.forEach(cell => {
+                const cellId = cell.id; // 셀의 ID
+                if (userInput && cellId.includes(userInput)) {
+                    cell.classList.add('highlight'); // 조건 만족 시 하이라이트 추가
+                }
+            });
+        }
+    </script>
+</body>
+</html>

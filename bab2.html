@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태현아학교가자~</title>
+</head>
+<body>
+    <h1>급식 정보와 시간표</h1>
+    <div id="date-display"></div>
+    <br>
+    <div id="meal-info"></div> <!-- 정보를 표시할 영역 -->
+    <br>
+    <div id="Schedule"></div>
+
+    <script>
+        function _getTodayFormatted() {
+            const today = new Date(); // 현재 날짜를 가져옴
+
+            const year = today.getFullYear(); // 연도
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // 월 (0부터 시작하므로 +1)
+            const day = String(today.getDate()).padStart(2, '0'); // 일
+
+            // 요일 배열
+            const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+            const weekday = weekdays[today.getDay()]; // 현재 요일 가져오기
+
+            return `${year}년 ${month}월 ${day}일 ${weekday}요일`; // 원하는 형식으로 결합
+        }
+
+        function getTodayFormatted() {
+    const today = new Date(); // 현재 날짜를 가져옴
+
+    const year = today.getFullYear(); // 연도
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // 월 (0부터 시작하므로 +1)
+    const day = String(today.getDate()).padStart(2, '0'); // 일
+
+    return `${year}${month}${day}`; // YYYYMMDD 형식으로 결합
+}
+
+const apiUrl = 'https://open.neis.go.kr/hub/mealServiceDietInfo?TYPE=JSON&KEY=f107e2c857e8447f9b4f64ccd711dfcd&ATPT_OFCDC_SC_CODE=K10&SD_SCHUL_CODE=7801100&MLSV_YMD=' + getTodayFormatted();
+
+async function fetchMealInfo() {
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json(); // 응답을 JSON으로 변환
+        console.log(data); // 응답 전체를 콘솔에 출력하여 구조 확인
+
+        const mealInfoDiv = document.getElementById('meal-info'); // 정보를 표시할 DIV
+
+        // JSON 구조에 따라 접근
+        const meals = data.mealServiceDietInfo && data.mealServiceDietInfo.length > 1 
+            ? data.mealServiceDietInfo[1].row 
+            : null;
+
+        if (meals && meals.length > 0) {
+            // 여러 개의 DDISH_NM이 있을 수 있으므로, 모든 내용을 연결하여 표시
+            const dishNames = meals.map(meal => meal.DDISH_NM.replace(/<br\/?>/g, '<br>')).join('<br>');
+            mealInfoDiv.innerHTML = `급식:<br>${dishNames}`; // DDISH_NM을 DIV에 삽입
+        } else {
+            mealInfoDiv.textContent = '엄마 오늘 급식 안한대~'; // 정보가 없을 때 메시지
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+fetchMealInfo();
+
+
+
+
+        const todayFormatted = _getTodayFormatted(); // 오늘 날짜를 형식에 맞게 저장
+        const dateDisplayDiv = document.getElementById('date-display'); // 날짜 표시 DIV
+
+        dateDisplayDiv.textContent = todayFormatted; // DIV에 날짜 출력
+        const schURL = 'https://open.neis.go.kr/hub/hisTimetable?KEY=f107e2c857e8447f9b4f64ccd711dfcd&TYPE=JSON&ATPT_OFCDC_SC_CODE=K10&SD_SCHUL_CODE=7801100&AY=2024&GRADE=1&CLASS_NM=1&ALL_TI_YMD=' + getTodayFormatted();
+
+async function fetchSchedule() {
+    try {
+        const response = await fetch(schURL);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json(); // 응답을 JSON으로 변환
+        console.log(data); // 응답 전체를 콘솔에 출력하여 구조 확인
+
+        const ScheduleDiv = document.getElementById('Schedule'); // 정보를 표시할 DIV
+
+        // JSON 구조에 따라 접근
+        const sch = data.hisTimetable && data.hisTimetable.length > 1 
+            ? data.hisTimetable[1].row 
+            : null;
+
+        if (sch && sch.length > 0) {
+            // 5글자 이상인 ITRT_CNTNT 값 필터링
+            const longContentCount = sch.filter(_sch => _sch.ITRT_CNTNT.length >= 5).length;
+
+            if (longContentCount >= 2) {
+                ScheduleDiv.textContent = '엄마 오늘 학교 안가~'; // 5글자 이상이 2개 이상일 때 메시지
+            } else {
+                // 5글자 이상인 값이 2개 미만인 경우 내용 표시
+                const schNames = sch.map(_sch => _sch.ITRT_CNTNT.replace(/<br\/?>/g, '<br>')).join('<br>');
+                ScheduleDiv.innerHTML = `시간표:<br>${schNames}`; // ITRT_CNTNT을 DIV에 삽입
+            }
+        } else {
+            ScheduleDiv.textContent = '엄마 오늘 학교 안가~'; // 정보가 없을 때 메시지
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+fetchSchedule();
+
+
+    </script>
+</body>
+</html>
