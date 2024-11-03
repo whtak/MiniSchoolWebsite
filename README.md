@@ -1,2 +1,2 @@
 # NewSchoolWebsite
-웹사이트를 만들자
+태현아 k코딩 들어와야지~
