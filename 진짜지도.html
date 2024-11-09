@@ -3,10 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>태현아2층길안내해줘~</title>
+    <title>태현아강고길안내해줘~</title>
     <style>
-        td {
-            padding: 10px;
+        table {
+            border-collapse: collapse;
+        }
+        .myTable {
+            text-align: center;
+            width: 30%;
+        }
+        td, tr {
+            border: 1px solid black;
+            padding: 1%;
+            width: 10%;
         }
         .highlight {
             border: 2px solid red; /* 빨간색 두꺼운 테두리 */
@@ -17,14 +26,80 @@
     <input type="text" id="userInput" placeholder="찾을 교실을 입력해주세요." />
     <button onclick="highlightCells()">검색</button>
 
-    <table border="1" id="myTable">
+    <table class="myTable">
+        <tr>
+            <td id="403">403</td>
+            <td id="404">404</td>
+            <td id="405">405</td>
+            <td id="406">406</td>
+            <td id="407">407</td>
+            <td id="쉼터">쉼터</td>
+        </tr>
+        <tr>
+            <td rowspan="4" id="다목적실">다목적실</td>
+            <td rowspan="5" colspan="4" id="4층">4층</td>
+            <td id="408">408</td>
+        </tr>
+        <tr>
+            <td id="409">409</td>
+        </tr>
+        <tr>
+            <td id="410">410</td>
+        </tr>
+        <tr>
+            <td id="411">411</td>
+        </tr>
+        <tr>
+            <td id="401">401</td>
+            <td id="여자화장실">여자<br>화장실</td>
+        </tr>
+    </table>
+    <br>
+    <table class="myTable">
+        <tr>
+            <td id="화장실">화장실</td>
+            <td colspan="5" id="306">306</td>
+            <td colspan="5" id="307">307</td>
+            <td colspan="5" id="308">308</td>
+            <td colspan="5" id="309">309</td>
+            <td id="쉼터">쉼터</td>
+        </tr>
+        <tr>
+            <td id="305">305</td>
+            <td rowspan="4" colspan="20" id="3층">3층</td>
+            <td id="310">310</td>
+        </tr>
+        <tr>
+            <td id="304">304</td>
+            <td id="311">311</td>
+        </tr>
+        <tr>
+            <td id="303">303</td>
+            <td id="312">312</td>
+        </tr>
+        <tr>
+            <td id="302">302</td>
+            <td id="313">313</td>
+        </tr>
+        <tr>
+            <td id="301">301</td>
+            <td colspan="4" id="318">318</td>
+            <td colspan="4" id="317">317</td>
+            <td colspan="4" id="316">316</td>
+            <td colspan="4" id="315">315</td>
+            <td colspan="4" id="314">314</td>
+            <td id="화장실">화장실</td>
+        </tr>
+    </table>
+    <br>
+    <table class="myTable">
         <tr>
             <td id="207">207</td>
             <td rowspan="2" id="208">208</td>
-            <td rowspan="2" id="209">209</td>
-            <td rowspan="2" id="210">210</td>
-            <td rowspan="2" id="211">211</td>
-            <td rowspan="2" id="212">212</td>
+            <td colspan="3" rowspan="2" id="209">209</td>
+            <td colspan="3" rowspan="2" id="210">210</td>
+            <td colspan="3" rowspan="2" id="211">211</td>
+            <td colspan="3" rowspan="2" id="212">212</td>
             <td rowspan="2" id="쉼터">쉼터</td>
         </tr>
         <tr>
@@ -32,7 +107,7 @@
         </tr>
         <tr>
             <td colspan="2" id="화장실">화장실</td>
-            <td rowspan="5" colspan="4" id="2층">2층</td>
+            <td rowspan="5" colspan="12" id="2층">2층</td>
             <td id="213">213</td>
         </tr>
         <tr>
@@ -53,19 +128,58 @@
         </tr>
         <tr>
             <td colspan="2" id="201">201</td>
-            <td id="223 222">223-2</td>
-            <td id="221">221</td>
-            <td id="220">220</td>
-            <td id="219">219</td>
-            <td id="218">218</td>
+            <td colspan="2" id="223">223</td>
+            <td colspan="2" id="222">222</td>
+            <td colspan="2" id="221">221</td>
+            <td colspan="2" id="220">220</td>
+            <td colspan="2" id="219">219</td>
+            <td colspan="2" id="218">218</td>
+            <td id="217">217</td>
         </tr>
+    </table>
+    <br>
+    <table class="myTable">
+            <tr>
+                <td id="105">105</td>
+                <td id="106">106</td>
+                <td id="107">107</td>
+                <td colspan="2">ㅤㅤㅤㅤㅤㅤ</td>
+                <td id="108">108</td>
+                <td id="로즈홀">로즈홀</td>
+            </tr>
+            <tr>
+                <td rowspan="2" id="104">104</td>
+                <td colspan="5" rowspan="5" id="1층">1층</td>
+                <td id="109">109</td>
+            </tr>
+            <tr>
+                <td id="110">110</td>
+            </tr>
+            <tr>
+                <td rowspan="2" id="103">103</td>
+                <td id="111">111</td>
+            </tr>
+            <tr>
+                <td id="112">112</td>
+            </tr>
+            <tr>
+                <td id="102">102</td>
+                <td id="화장실">화장실</td>
+            </tr>
+            <tr>
+                <td id="101">101</td>
+                <td id="115">115</td>
+                <td id="114">114</td>
+                <td colspan="2">ㅤㅤㅤㅤㅤㅤ</td>
+                <td colspan="2" id="113">113</td>
+            </tr>
     </table>
     
     <script>
         function highlightCells() {
             // 입력된 문자열 가져오기
             const userInput = document.getElementById('userInput').value;
-            const cells = document.querySelectorAll('#myTable td');
+            const cells = document.querySelectorAll('.myTable td');
 
             // 모든 셀의 하이라이트 제거
             cells.forEach(cell => {
